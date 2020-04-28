@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Simple Message</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    function fnSubmit() {
+      const username = $("#ipUsername").val();
+      const message = $("#ipMessage").val();
+
+      $.post("http://localhost:9200/msg", { username: username, message: message }, (data, status) => {
+
+        if (status === 'success')
+          alert(` success\n${data}`);
+        else
+          alert(" denied");
+
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Send Message : </h1>
+  <form onsubmit="fnSubmit()">
+    <label for="ipUsername">Username:</label>
+    <input id="ipUsername" size="40" autocomplete="off">
+    <br>
+    <label for="ipMessage">Message:</label>
+    <input id="ipMessage" size="40" type="text">
+    <br>
+    <br>
+    <button type="submit">submit</button>
+  </form>
+
+</body>
+
+</html>
